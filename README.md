@@ -8,15 +8,19 @@ Built and tested with an **Alesis Q49**, Raspberry Pi 4 B, and the Pi's **3.5 mm
 
 > Previously called **IvoryBox** and briefly **Orphic Keys**. The Python module, Linux service, and configuration paths retain `ivorybox` for compatibility with existing installations.
 
-## Three voices
+## Seven voices
 
 | MIDI Program Change | Voice | Character |
 |---|---|---|
 | **0** | Ivory Piano | Acoustic piano, expressive velocity and sustain |
 | **1** | BYTE | Dry square-wave lead inspired by 8-bit games |
 | **2** | NEBULA | Warm, slow pad with spacious reverb and chorus |
+| **3** | CRYSTAL HARP | Orchestral harp with a quiet music-box shimmer; fantasy-prelude feel |
+| **4** | PIXEL QUEST | Monophonic pulse lead, fast attack and short release; NES-inspired |
+| **5** | ABYSS | Dark atmosphere pad plus a detuned crystal layer; aquatic ambience |
+| **6** | DUSTY KEYS | Filtered electric piano with gentle chorus and reverb; lo-fi chill |
 
-BYTE uses a sampled General MIDI square-wave instrument; it is not a console-chip emulator. NEBULA blooms on held notes and chords. Voices come from the locally installed FluidR3 GM SoundFont. No subscription or cloud audio processing is required.
+BYTE uses a sampled General MIDI square-wave instrument; it is not a console-chip emulator. NEBULA and ABYSS bloom on held notes and chords. The four newer voices are timbral interpretations inspired by fantasy-game harps, NES melodies, aquatic game ambience, and lo-fi chill. They use only the installed SoundFont, without game recordings, extracted samples, or automatic soundtrack playback. PIXEL QUEST plays only the most recently pressed note on each MIDI channel; choose BYTE for polyphonic square-wave chords. Voices come from the locally installed FluidR3 GM SoundFont. No subscription or cloud audio processing is required.
 
 ## What it does
 
@@ -68,10 +72,10 @@ On the **original Alesis Q49**:
 
 1. Press **MIDI / SELECT**.
 2. Press the key labeled **PROGRAM**.
-3. Enter **0**, **1**, or **2** using the numbered keys.
+3. Enter a number from **0** to **6** using the numbered keys.
 4. Press **ENTER**, then **MIDI / SELECT** again to return to playing.
 
-Enter the number every time, even if it is already shown on the display. These steps follow the [official Q49 quick-start guide](https://www.alesis.com/rscdn/904/documents/q49___quickstart_guide___reva.pdf). Other controllers may display programs as **1–128**: in that case displayed values 1/2/3 correspond to MIDI values 0/1/2. The Q49 MKII has different controls; use its own manual.
+Enter the number every time, even if it is already shown on the display. These steps follow the [official Q49 quick-start guide](https://www.alesis.com/rscdn/904/documents/q49___quickstart_guide___reva.pdf). Other controllers may display programs as **1–128**: in that case displayed values 1–7 correspond to MIDI values 0–6. The Q49 MKII has different controls; use its own manual.
 
 A voice change releases current notes and sustain, then applies the selected voice to all 16 MIDI channels. Unsupported program numbers and bank changes are ignored. The selection lasts until the service restarts; the configured startup voice is then restored.
 
@@ -86,10 +90,10 @@ Edit `/etc/ivorybox/config`, then restart `ivorybox.service`.
 | `GAIN` | `0.5` | Synth gain, greater than 0 and at most 2 |
 | `PERIOD` | `256` | Requested frames per period; the driver may negotiate another size |
 | `MIDI_MATCH` | empty | Optional case-insensitive controller-name filter |
-| `SOUND` | `piano` | Startup voice: `piano`, `byte`, or `nebula` |
+| `SOUND` | `piano` | Startup voice: `piano`, `byte`, `nebula`, `crystal-harp`, `pixel-quest`, `abyss`, or `lofi` |
 | `READY_SOUND` | `1` | Set `0` to disable the ready arpeggio |
 
-For example, add `SOUND=nebula` to start with the dream pad. The synth runs at 48 kHz with 128-voice polyphony and three requested audio periods. Actual latency depends on the audio driver and hardware; no end-to-end latency guarantee has been measured.
+For example, add `SOUND=abyss` to start with the aquatic pad. The synth runs at 48 kHz with 128-voice polyphony and three requested audio periods. Actual latency depends on the audio driver and hardware; no end-to-end latency guarantee has been measured.
 
 Manual CLI usage is available with `python3 -m ivorybox --help`; an optional package installation exposes `pianoberry-keys` and the compatibility alias `ivorybox`. The systemd installer uses system Python and Debian dependencies rather than pip.
 
@@ -103,7 +107,9 @@ python3 scripts/check_version.py
 bash -n scripts/install.sh
 ```
 
-GitHub Actions runs the test suite on Python 3.9, 3.11, and 3.13. The real synthesizer has also been exercised on the target Pi to confirm all three voices generate audio. User testing confirmed piano playback, the Q49, and the ready arpeggio. Subjective sound quality, every controller, and physical latency are not covered by unit tests.
+GitHub Actions runs the test suite on Python 3.9, 3.11, and 3.13. The real synthesizer has also been exercised on the target Pi to confirm all seven voices generate audio. User testing confirmed piano playback, the Q49, and the ready arpeggio. Subjective sound quality, every controller, and physical latency are not covered by unit tests.
+
+For an optional synthesis check on a Pi with dependencies installed, run `python3 scripts/render_check.py`. It renders every voice without opening the audio device and checks for finite, nonzero, nonclipping output. Add `--output-dir /tmp/pianoberry-previews` to save generic arpeggio WAV previews. This is a software rendering check, not a physical speaker or latency test.
 
 Read [architecture](docs/ARCHITECTURE.md), [hardware validation](docs/HARDWARE-TEST.md), [contributing](CONTRIBUTING.md), and [release policy](docs/RELEASING.md).
 

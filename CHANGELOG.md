@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.0] - 2026-10-22
+
+- Added CRYSTAL HARP (program 3), PIXEL QUEST (4), ABYSS (5), and DUSTY KEYS (6).
+- Added quiet layered harp/crystal textures using internal MIDI channels 17–32.
+- Added per-voice filter, attack, release, attenuation, and tuning offsets. Offsets reset when changing modes.
+- PIXEL QUEST uses per-channel monophonic pulse playback; all other voices remain polyphonic.
+- Preserved programs 0/1/2 for piano/BYTE/NEBULA and the existing readiness cue.
+- Added rendering checks and optional WAV previews; all seven voices rendered on the target Pi without clipping in the test phrase.
+- Uses only the installed FluidR3 SoundFont; no extracted game samples or soundtrack recordings.
+
 ## [0.3.1] - 2026-10-22
 
 - Renamed the public project and repository to **PianoBerry Keys**.
