@@ -1,5 +1,5 @@
 [Unit]
-Description=Orphic Keys USB MIDI Instrument
+Description=PianoBerry Keys USB MIDI Instrument
 After=sound.target
 StartLimitIntervalSec=0
 

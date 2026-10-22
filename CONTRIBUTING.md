@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping make Orphic Keys a better standalone instrument.
+Thanks for helping make PianoBerry Keys a better standalone instrument.
 
 For a bug report, include the app version, Pi model, OS, controller model, audio device, steps to reproduce, and a short relevant log excerpt. Remove personal data and credentials before sharing logs.
 

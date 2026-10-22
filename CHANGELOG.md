@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1] - 2026-10-22
+
+- Renamed the public project and repository to **PianoBerry Keys**.
+- Updated English guides, project links, CLI branding, and service description.
+- Added the `pianoberry-keys` CLI while retaining `orphic-keys` and `ivorybox` aliases.
+- Existing `ivorybox` service, module, configuration paths, and device installations remain compatible.
+
 ## [0.3.0] - 2026-10-22
 
 ### Added

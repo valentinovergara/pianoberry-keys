@@ -1,12 +1,12 @@
-# Orphic Keys
+# PianoBerry Keys
 
 **A little Raspberry Pi. A keyboard. A world of sound.**
 
-Orphic Keys turns a Raspberry Pi 4 Model B into a standalone USB MIDI instrument: power it on, plug in a controller, hear the ready arpeggio, and play. Its name draws on Orpheus, the musician of Greek mythology.
+PianoBerry Keys turns a Raspberry Pi 4 Model B into a standalone USB MIDI instrument: power it on, plug in a controller, hear the ready arpeggio, and play.
 
 Built and tested with an **Alesis Q49**, Raspberry Pi 4 B, and the Pi's **3.5 mm audio jack**. Other USB MIDI controllers may work when supported by Linux ALSA; they have not all been tested.
 
-> Previously called **IvoryBox**. The Python module, Linux service, and configuration paths retain `ivorybox` for compatibility with existing installations.
+> Previously called **IvoryBox** and briefly **Orphic Keys**. The Python module, Linux service, and configuration paths retain `ivorybox` for compatibility with existing installations.
 
 ## Three voices
 
@@ -43,8 +43,8 @@ The keyboard sends MIDI. **Audio comes from the Raspberry Pi**, not from the Q49
 Install Raspberry Pi OS Lite, boot it, and open a local or SSH terminal. Clone this repository:
 
 ```bash
-git clone https://github.com/valentinovergara/orphic-keys.git
-cd orphic-keys
+git clone https://github.com/valentinovergara/pianoberry-keys.git
+cd pianoberry-keys
 sudo bash scripts/install.sh
 ```
 
@@ -91,7 +91,7 @@ Edit `/etc/ivorybox/config`, then restart `ivorybox.service`.
 
 For example, add `SOUND=nebula` to start with the dream pad. The synth runs at 48 kHz with 128-voice polyphony and three requested audio periods. Actual latency depends on the audio driver and hardware; no end-to-end latency guarantee has been measured.
 
-Manual CLI usage is available with `python3 -m ivorybox --help`; an optional package installation exposes `orphic-keys` and the compatibility alias `ivorybox`. The systemd installer uses system Python and Debian dependencies rather than pip.
+Manual CLI usage is available with `python3 -m ivorybox --help`; an optional package installation exposes `pianoberry-keys` and the compatibility alias `ivorybox`. The systemd installer uses system Python and Debian dependencies rather than pip.
 
 ## Development
 
