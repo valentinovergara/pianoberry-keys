@@ -1,6 +1,6 @@
 # Advanced USB recovery tools
 
-These scripts recover an **already provisioned** IvoryBox/Orphic Keys device. They do not build a ready-to-flash OS image and are not the normal installation entry point. Use the root README for a new installation.
+These scripts recover an **already provisioned** IvoryBox/PianoBerry Keys device. They do not build a ready-to-flash OS image and are not the normal installation entry point. Use the root README for a new installation.
 
 They assume Raspberry Pi OS Bookworm arm64, `/boot/firmware`, and the app source previously placed in `/opt/ivorybox-source/ivorybox`. Review scripts before running them as root. Boot-time hooks change the existing device; preserve its root PARTUUID and keep `cmdline.txt` on one line.
 
