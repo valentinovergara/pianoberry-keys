@@ -8,3 +8,7 @@ PERIOD=256
 MIDI_MATCH=""
 SOUND=piano
 READY_SOUND=1
+
+# Optional louder Pi 4 jack profile: use these together, after listening tests.
+# HEADPHONE_VOLUME=88
+# GAIN=0.35

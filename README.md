@@ -92,6 +92,7 @@ Edit `/etc/ivorybox/config`, then restart `ivorybox.service`.
 | `AUDIO_DEVICE` | `plughw:CARD=Headphones,DEV=0` | ALSA output device |
 | `SOUNDFONT` | `/usr/share/sounds/sf2/FluidR3_GM.sf2` | SoundFont with required bank-0 programs |
 | `GAIN` | `0.5` | Synth gain, greater than 0 and at most 2 |
+| `HEADPHONE_VOLUME` | unset | Optional onboard jack mixer percentage, 0–100; only with `CARD=Headphones` |
 | `PERIOD` | `256` | Requested frames per period; the driver may negotiate another size |
 | `MIDI_MATCH` | empty | Optional case-insensitive controller-name filter |
 | `SOUND` | `piano` | Startup voice: `piano`, `byte`, `nebula`, `crystal-harp`, `pixel-quest`, `abyss`, or `lofi` |
@@ -100,6 +101,14 @@ Edit `/etc/ivorybox/config`, then restart `ivorybox.service`.
 For example, add `SOUND=abyss` to start with the aquatic pad. The synth runs at 48 kHz with 128-voice polyphony and three requested audio periods. Actual latency depends on the audio driver and hardware; no end-to-end latency guarantee has been measured.
 
 Manual CLI usage is available with `python3 -m ivorybox --help`; an optional package installation exposes `pianoberry-keys` and the compatibility alias `ivorybox`. The systemd installer uses system Python and Debian dependencies rather than pip.
+
+## Standalone operation and volume
+
+The instrument service starts without a desktop login or network dependency. After installation, USB MIDI and audio work without a Mac or internet. Optional SSH is needed only for maintenance. Test a real cold boot with the intended controller and speakers before installation at the final location; an offline app restart alone does not validate the entire OS boot.
+
+For the original Pi 4 jack/speaker setup, the device was tuned to `HEADPHONE_VOLUME=88` and `GAIN=0.35`. Raising the analog mixer from its previous 80% increases output level, while the lower digital gain leaves room for strong chords. BYTE also has a small attenuation offset. Start with external speakers low; mixer percentages are not linear dB values and other speakers may need different settings. The normal installer preserves existing configuration and leaves headphone mixer control optional.
+
+**An inline power-cable switch only cuts power.** It does not request a Linux shutdown. Shut down the system before cutting power, or separately provision a proper shutdown button; do not treat the absence of audible notes as proof that storage is safe to unplug. See the [official shutdown instructions](https://www.raspberrypi.com/documentation/computers/getting-started.html).
 
 ## Development
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1] - 2026-10-22
+
+- Added optional HEADPHONE_VOLUME startup mixer control for the Pi 4 jack.
+- Tuned the original device to 88% jack mixer and 0.35 synth gain for more analog output with digital headroom.
+- Added 3.5 dB of BYTE attenuation to reduce dense-chord clipping.
+- Confirmed the instrument service is enabled without network dependencies; cold-boot validation still requires a physical offline test.
+
 ## [0.4.0] - 2026-10-22
 
 - Added CRYSTAL HARP (program 3), PIXEL QUEST (4), ABYSS (5), and DUSTY KEYS (6).
