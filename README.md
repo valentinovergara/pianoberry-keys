@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/brand/pianoberry-keys-header.png" alt="PianoBerry Keys — a glossy red berry with piano keys" width="800">
+</p>
+
 # PianoBerry Keys
 
 **A little Raspberry Pi. A keyboard. A world of sound.**
