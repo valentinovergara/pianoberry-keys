@@ -61,3 +61,14 @@ sudo rm -r /opt/ivorybox
 ```
 
 Configuration, installed packages, and the service account are left in place. Remove those manually if unused. Optional SSH maintenance access, if separately provisioned, must also be revoked separately. Shut down the Pi with `sudo poweroff` before disconnecting power.
+
+## Offline acceptance test
+
+Check `systemctl is-enabled ivorybox.service` and confirm its unit does not depend on network-online. Then perform two separate checks:
+
+1. **Application start without a network:** disconnect Ethernet/Wi-Fi, restart the instrument using a prearranged local action, listen for its ready cue, and play.
+2. **Full cold boot:** shut Linux down normally, disconnect network and then power, switch it back on, and confirm the cue and playable keyboard. This requires an available safe shutdown mechanism; an inline cable switch is not one.
+
+Do not claim cold-boot validation from an app-only test. Optional USB setup, diagnostic, and access provisioning services should be disabled once complete. A successful piano sound does not mean those services are still required.
+
+The default scoped SSH maintenance account can restart only the instrument and read its logs; it cannot shut down the operating system. OS shutdown access or a hardware shutdown input must be provisioned separately with the owner's authorization.
