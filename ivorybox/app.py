@@ -100,7 +100,7 @@ def run(midi, synth, stop, match="", poll=0.5, ready_sound=True):
         synth.panic()
 
 def main():
-    parser = argparse.ArgumentParser(description="Orphic Keys: power on, plug in, play")
+    parser = argparse.ArgumentParser(description="PianoBerry Keys: power on, plug in, play")
     parser.add_argument("--version", action="version", version=__version__)
     parser.add_argument("--soundfont", default="/usr/share/sounds/sf2/FluidR3_GM.sf2")
     parser.add_argument("--device", default="default", help="ALSA output device")
@@ -128,7 +128,7 @@ def main():
         signal.signal(sig, lambda *_: stop.set())
     synth = Synth(args.soundfont, args.device, args.gain, args.period, args.sound)
     try:
-        LOG.info("Orphic Keys %s — instrument ready", __version__)
+        LOG.info("PianoBerry Keys %s — instrument ready", __version__)
         run(mido, synth, stop, args.midi_match, ready_sound=not args.no_ready_sound)
     finally:
         synth.close()
