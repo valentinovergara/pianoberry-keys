@@ -1,0 +1,10 @@
+# systemd EnvironmentFile syntax; no shell expansion.
+# Tested Raspberry Pi 4 onboard 3.5 mm jack. Use aplay -l for other devices.
+AUDIO_DEVICE=plughw:CARD=Headphones,DEV=0
+SOUNDFONT=/usr/share/sounds/sf2/FluidR3_GM.sf2
+GAIN=0.5
+PERIOD=256
+# Empty: prefer Q49 when selecting, then allow another controller.
+MIDI_MATCH=""
+SOUND=piano
+READY_SOUND=1

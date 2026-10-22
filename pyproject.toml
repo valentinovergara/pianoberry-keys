@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orphic-keys"
+version = "0.3.0"
+description = "A standalone Raspberry Pi MIDI instrument with piano, chiptune, and dream-pad voices"
+requires-python = ">=3.9"
+dependencies = ["mido>=1.2,<2", "python-rtmidi>=1.4,<2"]
+
+[project.urls]
+Homepage = "https://github.com/valentinovergara/orphic-keys"
+Issues = "https://github.com/valentinovergara/orphic-keys/issues"
+
+[project.scripts]
+orphic-keys = "ivorybox.app:main"
+ivorybox = "ivorybox.app:main"
+
+[tool.setuptools.packages.find]
+include = ["ivorybox*"]

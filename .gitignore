@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+build/
+*.egg-info/
+.DS_Store
+*.sf2
+*.sf3
+
+deploy/usb/offline/
+
+# Local credentials, logs, caches, and OS images must never be published.
+.ssh/
+*.pem
+*.key
+*_ed25519*
+known_hosts*
+*.log
+*.img
+*.img.xz
+*.deb
