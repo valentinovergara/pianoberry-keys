@@ -3,6 +3,7 @@ import argparse
 import logging
 import os
 import signal
+import subprocess
 import threading
 import time
 from pathlib import Path
@@ -12,6 +13,20 @@ from .cue import ReadyCue
 from .presets import PRESETS, PROGRAM_PRESETS
 
 LOG = logging.getLogger("ivorybox")
+
+def configure_headphone_volume(percent, device):
+    """Set the Pi 4 jack mixer as the audio-group service user, never as root."""
+    if percent is None:
+        return
+    if not 0 <= percent <= 100:
+        raise ValueError("--headphone-volume must be between 0 and 100")
+    if "CARD=Headphones" not in device:
+        raise ValueError("--headphone-volume requires the onboard CARD=Headphones output")
+    result = subprocess.run(
+        ["amixer", "-c", "Headphones", "sset", "PCM", str(percent) + "%"],
+        check=True, capture_output=True, text=True, timeout=5,
+    )
+    LOG.info("Headphone mixer: %s", result.stdout.strip())
 
 def choose_port(names, match=""):
     candidates = sorted(n for n in names if "midi through" not in n.lower())
@@ -112,6 +127,8 @@ def main():
                         default=os.environ.get("READY_SOUND", "1") == "0",
                         help="Disable the ready arpeggio")
     parser.add_argument("--sound", choices=PRESETS, default=os.environ.get("SOUND", "piano"))
+    parser.add_argument("--headphone-volume", type=int, default=os.environ.get("HEADPHONE_VOLUME"),
+                        help="Optional Pi 4 jack mixer percentage (0–100)")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     if not 0 < args.gain <= 2:
@@ -126,6 +143,7 @@ def main():
     stop = threading.Event()
     for sig in (signal.SIGTERM, signal.SIGINT):
         signal.signal(sig, lambda *_: stop.set())
+    configure_headphone_volume(args.headphone_volume, args.device)
     synth = Synth(args.soundfont, args.device, args.gain, args.period, args.sound)
     try:
         LOG.info("PianoBerry Keys %s — instrument ready", __version__)
