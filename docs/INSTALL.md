@@ -49,7 +49,7 @@ Try `PERIOD=512`, restart, and compare. Close CPU-heavy processes and check powe
 
 ## Upgrade and roll back
 
-Back up `/etc/ivorybox/config`, select the desired Git release tag, and rerun the installer. Existing configuration is preserved. To roll back, check out a previous tag and reinstall. The Linux module, service account, service name, and paths remain `ivorybox` after the public rename to Orphic Keys.
+Back up `/etc/ivorybox/config`, select the desired Git release tag, and rerun the installer. Existing configuration is preserved. To roll back, check out a previous tag and reinstall. The Linux module, service account, service name, and paths remain `ivorybox` after the public rename to PianoBerry Keys.
 
 ## Remove
 

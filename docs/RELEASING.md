@@ -1,6 +1,6 @@
 # Versioning and releases
 
-The public project is **Orphic Keys**. `ivorybox` remains the module/service name to support devices installed under the original IvoryBox name. The default branch is `main`.
+The public project is **PianoBerry Keys**. `ivorybox` remains the module/service name to support devices installed under the original IvoryBox name. The default branch is `main`.
 
 ## Semantic versioning
 

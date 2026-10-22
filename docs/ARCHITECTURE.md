@@ -2,7 +2,7 @@
 
 USB MIDI → ALSA / RtMidi → Mido → voice routing → libfluidsynth → ALSA → speakers.
 
-The product is Orphic Keys; `ivorybox` remains the internal Python module and Linux service for compatibility. Python discovers inputs every 500 ms and drains MIDI events with a 1 ms loop wait. FluidSynth renders audio in its native thread; Python does not process audio samples in the performance path.
+The product is PianoBerry Keys; `ivorybox` remains the internal Python module and Linux service for compatibility. Python discovers inputs every 500 ms and drains MIDI events with a 1 ms loop wait. FluidSynth renders audio in its native thread; Python does not process audio samples in the performance path.
 
 One controller stays selected until it disappears. A Q49 is preferred when a new selection is made, then the first sorted eligible input. `MIDI_MATCH` restricts selection. Multiple simultaneous controllers are not supported.
 
